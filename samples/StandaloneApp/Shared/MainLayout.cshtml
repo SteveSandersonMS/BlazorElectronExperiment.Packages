@@ -6,10 +6,17 @@
 
 <div class="main">
     <div class="top-row px-4">
-        <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
+        <a href="" onclick="@OpenAboutAsync" class="ml-md-auto">About</a>
     </div>
 
     <div class="content px-4">
         @Body
     </div>
 </div>
+
+@functions {
+    async Task OpenAboutAsync()
+    {
+        await Electron.Shell.OpenExternalAsync("http://blazor.net");
+    }
+}

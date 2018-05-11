@@ -10,6 +10,11 @@ namespace MonoSanityClient
 {
     public static class Examples
     {
+        static Examples()
+        {
+            Runtime.Current = new MonoWebAssemblyRuntime();
+        }
+
         public static string AddNumbers(int a, int b)
             => (a + b).ToString();
 
@@ -33,7 +38,7 @@ namespace MonoSanityClient
         public static string EvaluateJavaScript(string expression)
         {
             // For tests that call this method, we'll exercise the 'InvokeJSArray' code path
-            var result = Runtime.InvokeJSArray<string>(out var exceptionMessage, "evaluateJsExpression", expression, null, null);
+            var result = Runtime.Current.InvokeJSArray<string>(out var exceptionMessage, "evaluateJsExpression", expression, null, null);
             if (exceptionMessage != null)
             {
                 return $".NET got exception: {exceptionMessage}";
@@ -46,7 +51,7 @@ namespace MonoSanityClient
         {
             // For tests that call this method, we'll exercise the 'InvokeJS' code path
             // since that doesn't box the params
-            var result = Runtime.InvokeJS<int, int, object, int>(out var exceptionMessage, "divideNumbersUnmarshalled", numberA, numberB, null);
+            var result = Runtime.Current.InvokeJS<int, int, object, int>(out var exceptionMessage, "divideNumbersUnmarshalled", numberA, numberB, null);
             if (exceptionMessage != null)
             {
                 return $".NET got exception: {exceptionMessage}";

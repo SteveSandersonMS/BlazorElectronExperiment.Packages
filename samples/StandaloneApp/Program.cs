@@ -1,21 +1,24 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
-
-using Microsoft.AspNetCore.Blazor.Browser.Rendering;
+﻿using Microsoft.AspNetCore.Blazor.Browser.Rendering;
 using Microsoft.AspNetCore.Blazor.Browser.Services;
+using Microsoft.AspNetCore.Blazor.Electron;
 
 namespace StandaloneApp
 {
-    public class Program
+    class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            var serviceProvider = new BrowserServiceProvider(configure =>
+            Launcher.StartElectronProcess(async () =>
             {
-                // Add any custom services here
-            });
+                var window = await Launcher.CreateWindowAsync("./wwwroot/index.html");
 
-            new BrowserRenderer(serviceProvider).AddComponent<App>("app");
+                var serviceProvider = new BrowserServiceProvider(configure =>
+                {
+                    // ... register services here
+                });
+
+                new BrowserRenderer(serviceProvider).AddComponent<App>("app");
+            });
         }
     }
 }

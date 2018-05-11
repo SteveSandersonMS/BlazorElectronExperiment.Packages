@@ -1,6 +1,4 @@
 ﻿@page "/fetchdata"
-@page "/fetchdata/{StartDate:datetime}"
-@inject HttpClient Http
 
 <h1>Weather forecast</h1>
 
@@ -33,38 +31,19 @@ else
             }
         </tbody>
     </table>
-    <p>
-        <a href="/fetchdata/@StartDate.AddDays(-5).ToString("yyyy-MM-dd")" class="btn btn-secondary float-left">
-            ◀ Previous
-        </a>
-        <a href="/fetchdata/@StartDate.AddDays(5).ToString("yyyy-MM-dd")" class="btn btn-secondary float-right">
-            Next ▶
-        </a>
-    </p>
 }
 
 @functions {
-    [Parameter] DateTime StartDate { get; set; }
-
     WeatherForecast[] forecasts;
 
-    public override void SetParameters(ParameterCollection parameters)
+    protected override async Task OnInitAsync()
     {
-        StartDate = DateTime.Now;
-        base.SetParameters(parameters);
-    }
+        // Because this is a native desktop app, we can read files from disk directly
 
-    protected override async Task OnParametersSetAsync()
-    {
-        forecasts = await Http.GetJsonAsync<WeatherForecast[]>(
-            $"/sample-data/weather.json?date={StartDate.ToString("yyyy-MM-dd")}");
+        var forecastsJson = await File.ReadAllTextAsync(
+            Path.Combine("SampleData", "weather.json"));
 
-        // Because StandaloneApp doesn't really have a server endpoint to get dynamic data from,
-        // fake the DateFormatted values here. This would not apply in a real app.
-        for (var i = 0; i < forecasts.Length; i++)
-        {
-            forecasts[i].DateFormatted = StartDate.AddDays(i).ToShortDateString();
-        }
+        forecasts = JsonUtil.Deserialize<WeatherForecast[]>(forecastsJson);
     }
 
     class WeatherForecast

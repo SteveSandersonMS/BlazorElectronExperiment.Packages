@@ -1,10 +1,11 @@
 ﻿export interface Platform {
-  start(loadAssemblyUrls: string[]): Promise<void>;
+  info: PlatformInfo;
 
-  callEntryPoint(assemblyName: string, entrypointMethod: string, args: (System_Object | null)[]);
+  start(properties: Map<string, string>): Promise<void>;
+  
   findMethod(assemblyName: string, namespace: string, className: string, methodName: string): MethodHandle;
   callMethod(method: MethodHandle, target: System_Object | null, args: (System_Object | null)[]): System_Object;
-
+ 
   toJavaScriptString(dotNetString: System_String): string;
   toDotNetString(javaScriptString: string): System_String;
 
@@ -17,6 +18,11 @@
   readObjectField<T extends System_Object>(baseAddress: Pointer, fieldOffset?: number): T;
   readStringField(baseAddress: Pointer, fieldOffset?: number): string | null;
   readStructField<T extends Pointer>(baseAddress: Pointer, fieldOffset?: number): T;
+}
+
+export interface PlatformInfo {
+  name: string;
+  supportsDotNetInProcess: boolean,
 }
 
 // We don't actually instantiate any of these at runtime. For perf it's preferable to

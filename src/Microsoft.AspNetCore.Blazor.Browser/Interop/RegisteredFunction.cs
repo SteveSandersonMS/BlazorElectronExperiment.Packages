@@ -12,6 +12,15 @@ namespace Microsoft.AspNetCore.Blazor.Browser.Interop
     public static class RegisteredFunction
     {
         /// <summary>
+        /// Blah
+        /// </summary>
+        public static void SetRuntime(IJavaScriptRuntime instance)
+        {
+            Runtime.Current = instance
+                ?? throw new System.ArgumentNullException(nameof(instance));
+        }
+
+        /// <summary>
         /// Invokes the JavaScript function registered with the specified identifier.
         /// Arguments and return values are marshalled via JSON serialization.
         /// </summary>
@@ -43,7 +52,7 @@ namespace Microsoft.AspNetCore.Blazor.Browser.Interop
         /// <returns>The result of the function invocation.</returns>
         public static TRes InvokeUnmarshalled<TRes>(string identifier, params object[] args)
         {
-            var result = Runtime.InvokeJSArray<TRes>(out var exception, identifier, args);
+            var result = Runtime.Current.InvokeJSArray<TRes>(out var exception, identifier, args);
             return exception != null
                 ? throw new JavaScriptException(exception)
                 : result;
@@ -96,7 +105,7 @@ namespace Microsoft.AspNetCore.Blazor.Browser.Interop
         /// <returns>The result of the function invocation.</returns>
         public static TRes InvokeUnmarshalled<T0, T1, T2, TRes>(string identifier, T0 arg0, T1 arg1, T2 arg2)
         {
-            var result = Runtime.InvokeJS<T0, T1, T2, TRes>(out var exception, identifier, arg0, arg1, arg2);
+            var result = Runtime.Current.InvokeJS<T0, T1, T2, TRes>(out var exception, identifier, arg0, arg1, arg2);
             return exception != null
                 ? throw new JavaScriptException(exception)
                 : result;

@@ -55,8 +55,7 @@ namespace Microsoft.AspNetCore.Blazor.Browser.Services
         {
             if (_cachedAbsoluteUri == null)
             {
-                var newUri = RegisteredFunction.InvokeUnmarshalled<string>(
-                    $"{_functionPrefix}.getLocationHref");
+                var newUri = "http://example.com/";
 
                 if (_hasEnabledNavigationInterception)
                 {
@@ -100,6 +99,11 @@ namespace Microsoft.AspNetCore.Blazor.Browser.Services
                 // and from that we return "/something"
                 return absoluteUri.Substring(baseUriPrefix.Length);
             }
+            else
+            {
+                //Fake
+                return absoluteUri.Substring(absoluteUri.LastIndexOf('/'));
+            }
 
             throw new ArgumentException($"The URI '{absoluteUri}' is not contained by the base URI '{baseUriPrefix}'.");
         }
@@ -120,8 +124,8 @@ namespace Microsoft.AspNetCore.Blazor.Browser.Services
             // The <base href> is fixed for the lifetime of the page, so just cache it
             if (_baseUriStringNoTrailingSlash == null)
             {
-                var baseUri = RegisteredFunction.InvokeUnmarshalled<string>(
-                    $"{_functionPrefix}.getBaseURI");
+                // Fake because haven't implemented sync interop that gets a result yet
+                var baseUri = "http://example.com/";
                 _baseUriStringNoTrailingSlash = ToBaseUriPrefix(baseUri);
                 _baseUriWithTrailingSlash = new Uri(_baseUriStringNoTrailingSlash + "/");
             }

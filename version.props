@@ -4,8 +4,8 @@
          tooling\Microsoft.VisualStudio.BlazorExtension\Properties\AssemblyInfo.cs
          to include the new version in its upper bounds -->
     <IsFinalBuild>false</IsFinalBuild>
-    <VersionPrefix>0.4.0</VersionPrefix>
-    <VersionSuffix>preview1</VersionSuffix>
+    <VersionPrefix>0.3.0</VersionPrefix>
+    <VersionSuffix>electron</VersionSuffix>
     <PackageVersion Condition="'$(IsFinalBuild)' == 'true' AND '$(VersionSuffix)' == 'rtm' ">$(VersionPrefix)</PackageVersion>
     <PackageVersion Condition="'$(IsFinalBuild)' == 'true' AND '$(VersionSuffix)' != 'rtm' ">$(VersionPrefix)-$(VersionSuffix)-final</PackageVersion>
     <BuildNumber Condition="'$(BuildNumber)' == ''">t000</BuildNumber>

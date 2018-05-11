@@ -1,4 +1,4 @@
-﻿import { MethodHandle, System_Object, System_String, System_Array, Pointer, Platform } from '../Platform';
+﻿import { MethodHandle, System_Object, System_String, System_Array, Pointer, Platform, PlatformInfo } from '../Platform';
 import { getAssemblyNameFromUrl } from '../DotNet';
 import { getRegisteredFunction } from '../../Interop/RegisteredFunction';
 
@@ -14,7 +14,31 @@ let mono_string_get_utf8: (managedString: System_String) => Mono.Utf8Ptr;
 let mono_string: (jsString: string) => System_String;
 
 export const monoPlatform: Platform = {
-  start: function start(loadAssemblyUrls: string[]) {
+  info: {
+    name: "mono",
+    supportsDotNetInProcess: true,
+  },
+
+  start: function start(properties: Map<string, string>) {
+    const isLinkerEnabled = properties.get('linker-enabled') === 'true';
+    const entryPointDll = getRequiredBootProperty(properties, 'main');
+    const entryPointMethod = getRequiredBootProperty(properties, 'entrypoint');
+    const entryPointAssemblyName = getAssemblyNameFromUrl(entryPointDll);
+    const referenceAssembliesCommaSeparated = properties.get('references') || '';
+    const referenceAssemblies = referenceAssembliesCommaSeparated
+      .split(',')
+      .map(s => s.trim())
+      .filter(s => !!s); 
+
+    if (!isLinkerEnabled) {
+      console.info('Blazor is running in dev mode without IL stripping. To make the bundle size significantly smaller, publish the application or see https://go.microsoft.com/fwlink/?linkid=870414');
+    }
+    
+    // Determine the URLs of the assemblies we want to load
+    const loadAssemblyUrls = [entryPointDll]
+      .concat(referenceAssemblies)
+      .map(filename => `_framework/_bin/${filename}`);
+
     return new Promise<void>((resolve, reject) => {
       // mono.js assumes the existence of this
       window['Browser'] = {
@@ -25,27 +49,13 @@ export const monoPlatform: Platform = {
       window['Module'] = createEmscriptenModuleInstance(loadAssemblyUrls, resolve, reject);
 
       addScriptTagsToDocument();
+
+      // Start up the application
+      callEntryPoint(entryPointAssemblyName, entryPointMethod, []);
     });
   },
 
   findMethod: findMethod,
-
-  callEntryPoint: function callEntryPoint(assemblyName: string, entrypointMethod: string, args: System_Object[]): void {
-    // Parse the entrypointMethod, which is of the form MyApp.MyNamespace.MyTypeName::MyMethodName
-    // Note that we don't support specifying a method overload, so it has to be unique
-    const entrypointSegments = entrypointMethod.split('::');
-    if (entrypointSegments.length != 2) {
-      throw new Error('Malformed entry point method name; could not resolve class name and method name.');
-    }
-    const typeFullName = entrypointSegments[0];
-    const methodName = entrypointSegments[1];
-    const lastDot = typeFullName.lastIndexOf('.');
-    const namespace = lastDot > -1 ? typeFullName.substring(0, lastDot) : '';
-    const typeShortName = lastDot > -1 ? typeFullName.substring(lastDot + 1) : typeFullName;
-
-    const entryPointMethodHandle = monoPlatform.findMethod(assemblyName, namespace, typeShortName, methodName);
-    monoPlatform.callMethod(entryPointMethodHandle, null, args);
-  },
 
   callMethod: function callMethod(method: MethodHandle, target: System_Object, args: System_Object[]): System_Object {
     if (args.length > 4) {
@@ -131,6 +141,23 @@ export const monoPlatform: Platform = {
 // Bypass normal type checking to add this extra function. It's only intended to be called from
 // the JS code in Mono's driver.c. It's never intended to be called from TypeScript.
 (monoPlatform as any).monoGetRegisteredFunction = getRegisteredFunction;
+
+function callEntryPoint(assemblyName: string, entrypointMethod: string, args: System_Object[]): void {
+  // Parse the entrypointMethod, which is of the form MyApp.MyNamespace.MyTypeName::MyMethodName
+  // Note that we don't support specifying a method overload, so it has to be unique
+  const entrypointSegments = entrypointMethod.split('::');
+  if (entrypointSegments.length != 2) {
+    throw new Error('Malformed entry point method name; could not resolve class name and method name.');
+  }
+  const typeFullName = entrypointSegments[0];
+  const methodName = entrypointSegments[1];
+  const lastDot = typeFullName.lastIndexOf('.');
+  const namespace = lastDot > -1 ? typeFullName.substring(0, lastDot) : '';
+  const typeShortName = lastDot > -1 ? typeFullName.substring(lastDot + 1) : typeFullName;
+
+  const entryPointMethodHandle = monoPlatform.findMethod(assemblyName, namespace, typeShortName, methodName);
+  monoPlatform.callMethod(entryPointMethodHandle, null, args);
+}
 
 function findAssembly(assemblyName: string): number {
   let assemblyHandle = assemblyHandleCache[assemblyName];
@@ -247,4 +274,12 @@ function asyncLoad(url, onload, onerror) {
 
 function getArrayDataPointer<T>(array: System_Array<T>): number {
   return <number><any>array + 12; // First byte from here is length, then following bytes are entries
+}
+
+function getRequiredBootProperty(properties: Map<string, string>, propertyName: string): string {
+  const result = properties.get(propertyName);
+  if (!result) {
+    throw new Error(`Missing "${propertyName}" attribute on Blazor script tag.`);
+  }
+  return result;
 }

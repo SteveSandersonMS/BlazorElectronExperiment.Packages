@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 
 module.exports = {
+    target: 'electron-renderer',
     resolve: { extensions: ['.ts', '.js'] },
     devtool: 'inline-source-map',
     module: {

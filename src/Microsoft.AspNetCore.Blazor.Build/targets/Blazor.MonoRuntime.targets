@@ -526,8 +526,9 @@
           Lines="@(_BlazorDependencyInput)"
           Overwrite="true" />
 
-    <Exec Command="$(BlazorBuildExe) resolve-dependencies &quot;@(IntermediateAssembly->'%(FullPath)')&quot; $(_ReferencesArg) $(_BclParameter) --output &quot;$(BlazorResolvedAssembliesOutputPath)&quot;" />
-
+    <!--
+    <Exec Command="$(BlazorBuildExe) resolve-dependencies &quot;@(IntermediateAssembly->'%(FullPath)')&quot; $(_ReferencesArg) $(_BclParameter) - -output &quot;$(BlazorResolvedAssembliesOutputPath)&quot;" />
+    -->
   </Target>
 
   <Target Name="_ReadResolvedBlazorApplicationAssemblies">

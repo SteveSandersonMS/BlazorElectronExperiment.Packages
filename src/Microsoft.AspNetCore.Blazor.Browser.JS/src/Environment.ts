@@ -3,4 +3,12 @@
 // Basic alternative to having an actual DI container.
 import { Platform } from './Platform/Platform';
 import { monoPlatform } from './Platform/Mono/MonoPlatform';
-export const platform: Platform = monoPlatform;
+import { electronPlatform } from './Platform/Electron/ElectronPlatform';
+
+let currentPlatform = monoPlatform;
+if (window && (window as any).process && (window as any).process.type)
+{
+    currentPlatform = electronPlatform; 
+}
+
+export const platform: Platform = currentPlatform;

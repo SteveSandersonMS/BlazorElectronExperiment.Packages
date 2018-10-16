@@ -1,0 +1,3 @@
+{
+  "extends": "../../modules/blazor/src/Microsoft.AspNetCore.Blazor.Browser.JS/tsconfig.json"
+}

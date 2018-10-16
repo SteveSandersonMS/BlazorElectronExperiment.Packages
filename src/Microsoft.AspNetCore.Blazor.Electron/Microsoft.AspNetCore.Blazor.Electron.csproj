@@ -7,9 +7,8 @@
 
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="0.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="0.7.0-preview1-20181015.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.7.0-preview1-20181015.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="0.7.0-preview1-20181015.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="0.7.0-preview1-20181016.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>

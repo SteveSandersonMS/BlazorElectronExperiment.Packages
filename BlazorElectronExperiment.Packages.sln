@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Blazor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{A4DFBCA5-EA6F-4EE6-8266-FBB4886683E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlectronSample", "samples\BlectronSample\BlectronSample.csproj", "{122C962E-3747-4BC1-BDB5-01B466DFE299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlectronSample", "samples\BlectronSample\BlectronSample.csproj", "{122C962E-3747-4BC1-BDB5-01B466DFE299}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5EBBF551-69B7-4700-B27E-D70F35B09E81}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.config = nuget.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

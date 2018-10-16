@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Blazor.Electron;
-using Microsoft.AspNetCore.Blazor.Hosting;
 
 namespace BlectronSample
 {

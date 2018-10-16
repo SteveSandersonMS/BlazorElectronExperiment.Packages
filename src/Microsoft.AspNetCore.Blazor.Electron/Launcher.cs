@@ -26,15 +26,16 @@ namespace Microsoft.AspNetCore.Blazor.Electron
             var projectRoot = GetProjectRoot();
             Directory.SetCurrentDirectory(projectRoot);
 
+            var applicationBaseDir = Path.GetDirectoryName(typeof(Launcher).Assembly.Location);
             var electronEntryPoint = Path.Combine(
-                projectRoot,
-                "Electron",
+                applicationBaseDir,
+                "js",
                 "main.js");
             var electronPort = SelectPort();
 
             Log($"Launching Electron on port {electronPort}");
 
-            var electronFilename = Path.Combine(projectRoot, "Electron", "node_modules", "electron", "dist", "electron");
+            var electronFilename = Path.Combine(projectRoot, "node_modules", "electron", "dist", "electron");
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 electronFilename += ".exe";

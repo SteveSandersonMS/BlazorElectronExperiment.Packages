@@ -15,10 +15,13 @@
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.AspNetCore.Blazor.Electron.JS\Microsoft.AspNetCore.Blazor.Electron.JS.csproj" ReferenceOutputAssembly="false" />
 
-    <Content Include="..\Microsoft.AspNetCore.Blazor.Electron.JS\dist\**">
+    <None Include="..\Microsoft.AspNetCore.Blazor.Electron.JS\dist\**">
       <Link>js\%(FileName)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Update="js\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -49,10 +49,10 @@ function boot() {
 boot();
 
 async function fetchBootConfigAsync() {
-  const sourceName = '/blazor.electron.js';
+  const sourceName = '/js/blazor.electron.js';
   const bootJsonUrl = document.querySelector(`script[src$="${sourceName}"]`)!
     .getAttribute('src')!
-    .replace(sourceName, '/blazor.boot.json');
+    .replace(sourceName, '/dist/_framework/blazor.boot.json');
   const bootConfigResponse = await fetch(bootJsonUrl, { method: 'Get', credentials: 'include' });
   return bootConfigResponse.json() as Promise<any>;
 }

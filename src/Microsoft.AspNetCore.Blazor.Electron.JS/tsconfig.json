@@ -1,3 +1,9 @@
 {
-  "extends": "../../modules/blazor/src/Microsoft.AspNetCore.Blazor.Browser.JS/tsconfig.json"
+  "extends": "../../modules/blazor/src/Microsoft.AspNetCore.Blazor.Browser.JS/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@browserjs/*": ["../../modules/blazor/src/Microsoft.AspNetCore.Blazor.Browser.JS/src/*"]
+    }
+  }
 }

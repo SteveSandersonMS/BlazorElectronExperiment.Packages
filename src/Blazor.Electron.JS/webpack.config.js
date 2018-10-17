@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = (env, args) => ({
@@ -8,7 +7,7 @@ module.exports = (env, args) => ({
         extensions: ['.ts', '.js'],
         plugins: [new TsconfigPathsPlugin()]
     },
-    devtool: args.mode === 'development' ? 'inline-source-map' : 'none',
+    devtool: 'inline-source-map',
     module: {
         rules: [{ test: /\.ts?$/, loader: 'ts-loader' }]
     },

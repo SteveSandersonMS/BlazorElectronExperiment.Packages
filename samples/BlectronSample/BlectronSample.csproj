@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.7.0-preview1-20181016.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="0.7.0-preview1-20181016.1" IncludeAssets="Runtime" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="0.7.0-preview1-20181016.1" IncludeAssets="Runtime" /> <!-- Don't include build info because it interferes with Razor tooling -->
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.7.0-preview1-20181016.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageVersion>0.0.1</PackageVersion>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <LangVersion>7.3</LangVersion>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -8,20 +9,14 @@
 
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="0.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="0.7.0-preview1-20181016.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="0.7.0-preview1-20181016.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.AspNetCore.Blazor.Electron.JS\Microsoft.AspNetCore.Blazor.Electron.JS.csproj" ReferenceOutputAssembly="false" />
-
-    <None Include="..\Microsoft.AspNetCore.Blazor.Electron.JS\dist\**">
-      <Link>js\%(FileName)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="js\**">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="..\Microsoft.AspNetCore.Blazor.Electron.JS\dist\**" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="js\**" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 
 </Project>

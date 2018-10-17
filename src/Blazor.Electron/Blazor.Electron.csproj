@@ -14,9 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.AspNetCore.Blazor.Electron.JS\Microsoft.AspNetCore.Blazor.Electron.JS.csproj" ReferenceOutputAssembly="false" />
-    <EmbeddedResource Include="..\Microsoft.AspNetCore.Blazor.Electron.JS\dist\**" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="..\Blazor.Electron.JS\dist\**" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
     <EmbeddedResource Include="js\**" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Blazor.Electron.JS\Blazor.Electron.JS.csproj" />
   </ItemGroup>
 
 </Project>

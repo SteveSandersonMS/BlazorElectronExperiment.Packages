@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Microsoft.AspNetCore.Blazor.Electron\Microsoft.AspNetCore.Blazor.Electron.csproj" />
+    <ProjectReference Include="..\..\src\Blazor.Electron\Blazor.Electron.csproj" />
   </ItemGroup>
 
   <Target Name="EnsureNpmRestored" BeforeTargets="CoreBuild" Condition="!Exists('node_modules')">

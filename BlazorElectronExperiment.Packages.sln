@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Blazor.Electron.JS", "src\Microsoft.AspNetCore.Blazor.Electron.JS\Microsoft.AspNetCore.Blazor.Electron.JS.csproj", "{A11DE2A0-A694-4396-B277-D3FF926ABD83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Electron.JS", "src\Blazor.Electron.JS\Blazor.Electron.JS.csproj", "{A11DE2A0-A694-4396-B277-D3FF926ABD83}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Blazor.Electron", "src\Microsoft.AspNetCore.Blazor.Electron\Microsoft.AspNetCore.Blazor.Electron.csproj", "{DAFE23D2-8BA2-4E69-8288-92EC6E52D006}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Electron", "src\Blazor.Electron\Blazor.Electron.csproj", "{DAFE23D2-8BA2-4E69-8288-92EC6E52D006}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{A4DFBCA5-EA6F-4EE6-8266-FBB4886683E6}"
 EndProject

@@ -31,7 +31,7 @@ namespace Microsoft.AspNetCore.Blazor.Electron
                 applicationBaseDir,
                 "dist",
                 "_content",
-                "Blazor.Electron",
+                "BlazorElectron",
                 "main.js");
             var electronPort = SelectPort();
 

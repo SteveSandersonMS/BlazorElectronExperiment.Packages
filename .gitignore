@@ -1,9 +1,6 @@
-.vs/
 bin/
 obj/
-*.user
-launchSettings.json
-artifacts/
-msbuild.binlog
-.vscode/
-BenchmarkDotNet.Artifacts/
+node_modules/
+dist/
+.vs/
+*.csproj.user

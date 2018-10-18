@@ -37,12 +37,7 @@ namespace Microsoft.AspNetCore.Blazor.Electron
 
             Log($"Launching Electron on port {electronPort}");
 
-            var electronFilename = Path.Combine(projectRoot, "node_modules", "electron", "dist", "electron");
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                electronFilename += ".exe";
-            }
-
+            var electronFilename = Path.Combine(projectRoot, "node_modules", "electron", "dist", GetElectronPath());
             var electronProcess = ElectronProcess.Start(new ProcessStartInfo
             {
                 FileName = electronFilename,
@@ -106,7 +101,7 @@ namespace Microsoft.AspNetCore.Blazor.Electron
 
             var window = await ElectronNET.API.Electron.WindowManager.CreateWindowAsync(url);
             ElectronJSRuntime = new ElectronJSRuntime(window);
-            
+
             ElectronSynchronizationContext.UnhandledException += (sender, ex) =>
             {
                 ElectronNET.API.Electron.IpcMain.Send(window, "JS.Error", ex.ToString());
@@ -177,6 +172,26 @@ namespace Microsoft.AspNetCore.Blazor.Electron
             }
 
             throw new InvalidOperationException($"Could not find any .csproj in or above '{startDir}'");
+        }
+
+        private static string GetElectronPath()
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return "electron.exe";
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return "electron";
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                return "Electron.app/Contents/MacOS/Electron";
+            }
+            else
+            {
+                throw new PlatformNotSupportedException("Unrecognized platform");
+            }
         }
 
         // Finds a randomized, available port

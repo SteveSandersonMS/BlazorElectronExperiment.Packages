@@ -4,3 +4,4 @@ node_modules/
 dist/
 .vs/
 *.csproj.user
+src/Microsoft.AspNetCore.Components.Electron/js/components.electron.js

@@ -15,8 +15,11 @@
     <ProjectReference Include="..\Microsoft.AspNetCore.Components.Electron.JS\Microsoft.AspNetCore.Components.Electron.JS.csproj" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
+  <Target Name="GetJsFiles" BeforeTargets="CoreBuild">
+    <Copy SourceFiles="..\Microsoft.AspNetCore.Components.Electron.JS\dist\components.electron.js" DestinationFolder="js" />
+  </Target>
+
   <ItemGroup>
-    <Content Include="..\Microsoft.AspNetCore.Components.Electron.JS\dist\**" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="js\**" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 

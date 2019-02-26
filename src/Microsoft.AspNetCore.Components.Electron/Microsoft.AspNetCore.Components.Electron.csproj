@@ -20,7 +20,7 @@
   </Target>
 
   <ItemGroup>
-    <Content Include="js\**" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="js\**" CopyToOutputDirectory="PreserveNewest" BuildAction="None" PackageCopyToOutput="true" />
   </ItemGroup>
 
 </Project>

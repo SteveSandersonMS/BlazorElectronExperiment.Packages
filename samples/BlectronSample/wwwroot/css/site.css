@@ -121,3 +121,8 @@ app {
         display: block;
     }
 }
+
+body a, body a:not([href]), body a:not([href]):not([tabindex]), body a:not([href]):not([tabindex]):hover {
+    color: #007bff;
+    cursor: pointer;
+}

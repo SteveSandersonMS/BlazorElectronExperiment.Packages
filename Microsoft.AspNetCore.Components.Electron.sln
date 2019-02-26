@@ -5,11 +5,6 @@ VisualStudioVersion = 16.0.28606.126
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{A4DFBCA5-EA6F-4EE6-8266-FBB4886683E6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5EBBF551-69B7-4700-B27E-D70F35B09E81}"
-	ProjectSection(SolutionItems) = preProject
-		nuget.config = nuget.config
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComponentsElectronSample", "samples\ComponentsElectronSample\ComponentsElectronSample.csproj", "{0B890D48-11EE-4256-AC73-86C72F1633BD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.AspNetCore.Components.Electron", "src\Microsoft.AspNetCore.Components.Electron\Microsoft.AspNetCore.Components.Electron.csproj", "{ED137E54-A153-4420-B0D0-8AA7E7C851B8}"

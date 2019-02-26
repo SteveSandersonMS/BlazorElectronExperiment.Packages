@@ -1,4 +1,4 @@
-import '@browserjs/../../../modules/jsinterop/src/Microsoft.JSInterop.JS/src/Microsoft.JSInterop';
+import '@dotnet/jsinterop/dist/Microsoft.JSInterop';
 import '@browserjs/GlobalExports';
 import { OutOfProcessRenderBatch } from '@browserjs/Rendering/RenderBatch/OutOfProcessRenderBatch';
 import { internalFunctions as uriHelperFunctions } from '@browserjs/Services/UriHelper';

@@ -1,5 +1,6 @@
 {
-  "name": "blazor.host.client",
+  "name": "components.electron.client",
+  "private": true,
   "version": "0.0.1",
   "description": "",
   "main": "index.js",

@@ -114,11 +114,11 @@ namespace Microsoft.AspNetCore.Blazor.Electron
             //
             // The handshake sequence looks like this:
             //
-            // 1. dotnet starts listening for blazor:init
-            // 2. dotnet sends blazor:init repeatedly
-            // 3. electron starts listening for blazor:init
-            // 4. electron sends a blazor:init once it has received one from dotnet - it's ready
-            // 5. dotnet receives blazor:init - it's ready
+            // 1. dotnet starts listening for components:init
+            // 2. dotnet sends components:init repeatedly
+            // 3. electron starts listening for components:init
+            // 4. electron sends a components:init once it has received one from dotnet - it's ready
+            // 5. dotnet receives components:init - it's ready
             //
             // Because either side might take any amount of time to start listening,
             // step 3 can occur at any point prior to step 4. The whole process works
@@ -126,7 +126,7 @@ namespace Microsoft.AspNetCore.Blazor.Electron
 
             var cts = new CancellationTokenSource();
             var incomingHandshakeCancellationToken = cts.Token;
-            ElectronNET.API.Electron.IpcMain.Once("blazor:init", args =>
+            ElectronNET.API.Electron.IpcMain.Once("components:init", args =>
             {
                 var argsArray = (JArray)args;
                 InitialUriAbsolute = (string)argsArray[0];
@@ -137,7 +137,7 @@ namespace Microsoft.AspNetCore.Blazor.Electron
             Log("Waiting for interop connection");
             while (!incomingHandshakeCancellationToken.IsCancellationRequested)
             {
-                ElectronNET.API.Electron.IpcMain.Send(window, "blazor:init");
+                ElectronNET.API.Electron.IpcMain.Send(window, "components:init");
 
                 try
                 {

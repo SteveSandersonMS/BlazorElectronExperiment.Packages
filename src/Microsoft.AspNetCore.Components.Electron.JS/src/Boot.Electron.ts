@@ -16,9 +16,9 @@ function boot() {
   });
 
   // Wait until the .NET process says it is ready
-  electron.ipcRenderer.once('blazor:init', async () => {
+  electron.ipcRenderer.once('components:init', async () => {
     // Confirm that the JS side is ready for the app to start
-    electron.ipcRenderer.send('blazor:init', [
+    electron.ipcRenderer.send('components:init', [
       uriHelperFunctions.getLocationHref().replace(/\/index\.html$/, ''),
       uriHelperFunctions.getBaseURI()]);
   });

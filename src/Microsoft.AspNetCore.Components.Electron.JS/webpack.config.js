@@ -12,7 +12,7 @@ module.exports = (env, args) => ({
         rules: [{ test: /\.ts?$/, loader: 'ts-loader' }]
     },
     entry: {
-        'blazor.electron': './src/Boot.Electron.ts'
+        'components.electron': './src/Boot.Electron.ts'
     },
     output: { path: path.join(__dirname, '/dist'), filename: '[name].js' }
 });

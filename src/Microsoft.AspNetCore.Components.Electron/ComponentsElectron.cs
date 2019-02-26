@@ -1,17 +1,26 @@
-﻿using Microsoft.AspNetCore.Components.Services;
+﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+
+using Microsoft.AspNetCore.Components.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.JSInterop;
 using System;
 
 namespace Microsoft.AspNetCore.Components.Electron
 {
+    /// <summary>
+    /// Contains methods for starting an Electron process and attaching components.
+    /// </summary>
     public static class ComponentsElectron
     {
-        public static void Run<TStartup>(string path)
+        /// <summary>
+        /// Starts an Electron process using the specified JavaScript file as the host entrypoint.
+        /// </summary>
+        public static void Run<TStartup>(string hostJsPath)
         {
             Launcher.StartElectronProcess(async () =>
             {
-                var window = await Launcher.CreateWindowAsync(path);
+                var window = await Launcher.CreateWindowAsync(hostJsPath);
                 JSRuntime.SetCurrentJSRuntime(Launcher.ElectronJSRuntime);
 
                 var serviceCollection = new ServiceCollection();

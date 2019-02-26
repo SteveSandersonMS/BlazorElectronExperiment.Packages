@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 using ElectronNET.API;
 using MessagePack;
 using MessagePack.Resolvers;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Browser;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Server;
 using Microsoft.JSInterop;
+
+// Many aspects of the layering here are not what we really want, but it won't affect
+// people prototyping applications with it. We can put more work into restructuring the
+// hosting and startup models for Electron in the future if it's justified.
 
 namespace Microsoft.AspNetCore.Components.Electron
 {

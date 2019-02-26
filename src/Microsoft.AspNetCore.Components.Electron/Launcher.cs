@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -105,9 +108,6 @@ namespace Microsoft.AspNetCore.Components.Electron
                 ElectronNET.API.Electron.IpcMain.Send(window, "JS.Error", ex.ToString());
                 throw ex;
             };
-
-            //RegisteredFunction.SetRuntime(new ElectronJavaScriptRuntime(window));
-            //InteropChannel.Create(window, SynchronizationContext.Current);
 
             // Do a two-way handshake with the browser, this ensures that the appropriate
             // interop handlers have been set up before control returns to the user.

@@ -3,7 +3,6 @@ import '@browserjs/GlobalExports';
 import { OutOfProcessRenderBatch } from '@browserjs/Rendering/RenderBatch/OutOfProcessRenderBatch';
 import { internalFunctions as uriHelperFunctions } from '@browserjs/Services/UriHelper';
 import { renderBatch } from '@browserjs/Rendering/Renderer';
-import { loadEmbeddedResourcesAsync } from '@browserjs/BootCommon';
 import { decode } from 'base64-arraybuffer';
 import * as electron from 'electron';
 

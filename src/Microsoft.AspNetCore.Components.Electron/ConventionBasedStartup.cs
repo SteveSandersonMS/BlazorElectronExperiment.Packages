@@ -11,17 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microsoft.AspNetCore.Components.Electron
 {
-    // Keeping this simple for now to focus on predictable and reasonable behaviors.
-    // Startup in WebHost supports lots of things we don't yet support, and some we
-    // may never support.
-    //
-    // Possible additions:
-    // - environments
-    // - case-insensitivity (makes sense with environments)
-    //
-    // Likely never:
-    // - statics
-    // - DI into constructor
+    // Duplicated from the equivalent in aspnetcore/src/Components
     internal class ConventionBasedStartup
     {
         public ConventionBasedStartup(object instance)

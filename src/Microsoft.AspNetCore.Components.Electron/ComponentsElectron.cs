@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.JSInterop;
 using System;
 
-namespace Microsoft.AspNetCore.Blazor.Electron
+namespace Microsoft.AspNetCore.Components.Electron
 {
-    public static class BlazorElectron
+    public static class ComponentsElectron
     {
         public static void Run<TStartup>(string path)
         {
@@ -22,7 +22,7 @@ namespace Microsoft.AspNetCore.Blazor.Electron
                 startup.ConfigureServices(serviceCollection);
 
                 var services = serviceCollection.BuildServiceProvider();
-                var builder = new ElectronBlazorApplicationBuilder(services);
+                var builder = new ElectronApplicationBuilder(services);
                 startup.Configure(builder, services);
 
                 ElectronUriHelper.Instance.Initialize(

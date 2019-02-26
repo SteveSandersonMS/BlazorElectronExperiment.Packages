@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using System.Threading;
 
-namespace Microsoft.AspNetCore.Blazor.Electron
+namespace Microsoft.AspNetCore.Components.Electron
 {
     internal class ElectronSynchronizationContext : SynchronizationContext
     {

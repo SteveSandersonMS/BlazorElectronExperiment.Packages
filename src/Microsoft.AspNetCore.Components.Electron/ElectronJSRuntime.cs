@@ -2,7 +2,7 @@
 using Microsoft.JSInterop;
 using System;
 
-namespace Microsoft.AspNetCore.Blazor.Electron
+namespace Microsoft.AspNetCore.Components.Electron
 {
     internal class ElectronJSRuntime : JSRuntimeBase
     {

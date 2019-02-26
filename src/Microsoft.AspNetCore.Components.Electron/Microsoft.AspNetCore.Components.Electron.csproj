@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <BlazorVersion>3.0.0-preview3-19122-14</BlazorVersion>
-    <PackageVersion>$(BlazorVersion)</PackageVersion>
+    <ComponentsVersion>3.0.0-preview3-19122-14</ComponentsVersion>
+    <PackageVersion>$(ComponentsVersion)</PackageVersion>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="0.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Server" Version="$(BlazorVersion)" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="$(BlazorVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Server" Version="$(ComponentsVersion)" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="$(ComponentsVersion)" />
   </ItemGroup>
 
   <ItemGroup>

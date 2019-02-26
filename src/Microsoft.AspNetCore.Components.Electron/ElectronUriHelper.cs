@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Services;
 using Microsoft.JSInterop;
 
-namespace Microsoft.AspNetCore.Blazor.Electron
+namespace Microsoft.AspNetCore.Components.Electron
 {
     public class ElectronUriHelper : UriHelperBase
     {

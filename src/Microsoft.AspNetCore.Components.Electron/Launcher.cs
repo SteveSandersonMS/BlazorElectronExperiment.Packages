@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.JSInterop;
 using Newtonsoft.Json.Linq;
 
-namespace Microsoft.AspNetCore.Blazor.Electron
+namespace Microsoft.AspNetCore.Components.Electron
 {
     internal static class Launcher
     {

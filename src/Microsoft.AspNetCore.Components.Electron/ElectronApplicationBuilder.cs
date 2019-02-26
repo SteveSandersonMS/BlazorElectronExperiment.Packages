@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Microsoft.AspNetCore.Blazor.Electron
+namespace Microsoft.AspNetCore.Components.Electron
 {
-    internal class ElectronBlazorApplicationBuilder : IComponentsApplicationBuilder
+    internal class ElectronApplicationBuilder : IComponentsApplicationBuilder
     {
-        public ElectronBlazorApplicationBuilder(IServiceProvider services)
+        public ElectronApplicationBuilder(IServiceProvider services)
         {
             Services = services;
             Entries = new List<(Type componentType, string domElementSelector)>();

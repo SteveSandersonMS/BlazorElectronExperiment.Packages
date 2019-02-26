@@ -2,17 +2,16 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
     <DefaultItemExcludes>${DefaultItemExcludes};node_modules\**;package-lock.json</DefaultItemExcludes>
-    <BlazorVersion>3.0.0-preview3-19122-14</BlazorVersion>
+    <ComponentsVersion>3.0.0-preview3-19122-14</ComponentsVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Server" Version="$(BlazorVersion)" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Build" Version="$(BlazorVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Server" Version="$(ComponentsVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Build" Version="$(ComponentsVersion)" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 

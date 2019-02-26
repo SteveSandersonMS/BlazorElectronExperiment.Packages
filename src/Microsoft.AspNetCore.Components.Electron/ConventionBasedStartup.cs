@@ -9,7 +9,7 @@ using System.Runtime.ExceptionServices;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Microsoft.AspNetCore.Blazor.Electron
+namespace Microsoft.AspNetCore.Components.Electron
 {
     // Keeping this simple for now to focus on predictable and reasonable behaviors.
     // Startup in WebHost supports lots of things we don't yet support, and some we

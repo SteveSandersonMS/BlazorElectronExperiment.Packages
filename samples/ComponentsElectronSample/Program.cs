@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Blazor.Electron;
 
-namespace BlectronSample
+namespace ComponentsElectronSample
 {
     public class Program
     {

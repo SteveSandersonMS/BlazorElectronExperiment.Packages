@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Blazor.Services;
+﻿using Microsoft.AspNetCore.Components.Services;
 using Microsoft.JSInterop;
 
 namespace Microsoft.AspNetCore.Blazor.Electron
@@ -34,9 +34,9 @@ namespace Microsoft.AspNetCore.Blazor.Electron
             Instance.TriggerOnLocationChanged();
         }
 
-        protected override void NavigateToCore(string uri)
+        protected override void NavigateToCore(string uri, bool forceLoad)
         {
-            JSRuntime.Current.InvokeAsync<object>(InteropNavigateTo, uri);
+            JSRuntime.Current.InvokeAsync<object>(InteropNavigateTo, uri, forceLoad);
         }
     }
 }

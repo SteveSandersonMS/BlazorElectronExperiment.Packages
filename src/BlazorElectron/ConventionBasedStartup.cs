@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.ExceptionServices;
-using Microsoft.AspNetCore.Blazor.Builder;
+using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microsoft.AspNetCore.Blazor.Electron
@@ -31,7 +31,7 @@ namespace Microsoft.AspNetCore.Blazor.Electron
 
         public object Instance { get; }
 
-        public void Configure(IBlazorApplicationBuilder app, IServiceProvider services)
+        public void Configure(IComponentsApplicationBuilder app, IServiceProvider services)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace Microsoft.AspNetCore.Blazor.Electron
                 for (var i = 0; i < parameters.Length; i++)
                 {
                     var parameter = parameters[i];
-                    arguments[i] = parameter.ParameterType == typeof(IBlazorApplicationBuilder)
+                    arguments[i] = parameter.ParameterType == typeof(IComponentsApplicationBuilder)
                         ? app
                         : services.GetRequiredService(parameter.ParameterType);
                 }

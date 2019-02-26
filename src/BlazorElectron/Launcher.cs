@@ -29,9 +29,7 @@ namespace Microsoft.AspNetCore.Blazor.Electron
             var applicationBaseDir = Path.GetDirectoryName(typeof(Launcher).Assembly.Location);
             var electronEntryPoint = Path.Combine(
                 applicationBaseDir,
-                "dist",
-                "_content",
-                "BlazorElectron",
+                "js",
                 "main.js");
             var electronPort = SelectPort();
 

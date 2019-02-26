@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <BlazorVersion>0.7.0-preview1-20181017.2</BlazorVersion>
+    <BlazorVersion>3.0.0-preview3-19122-14</BlazorVersion>
     <PackageVersion>$(BlazorVersion)</PackageVersion>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="ElectronNET.API" Version="0.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Blazor.Server" Version="$(BlazorVersion)" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Server" Version="$(BlazorVersion)" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="$(BlazorVersion)" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="..\BlazorElectron.JS\dist\**" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
-    <EmbeddedResource Include="js\**" LogicalName="blazor:file:%(RecursiveDir)%(Filename)%(Extension)" />
+    <Content Include="..\BlazorElectron.JS\dist\**" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="js\**" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

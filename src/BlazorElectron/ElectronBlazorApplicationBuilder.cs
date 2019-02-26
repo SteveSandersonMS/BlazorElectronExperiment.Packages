@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Blazor.Builder;
+﻿using Microsoft.AspNetCore.Components.Builder;
 using System;
 using System.Collections.Generic;
 
 namespace Microsoft.AspNetCore.Blazor.Electron
 {
-    internal class ElectronBlazorApplicationBuilder : IBlazorApplicationBuilder
+    internal class ElectronBlazorApplicationBuilder : IComponentsApplicationBuilder
     {
         public ElectronBlazorApplicationBuilder(IServiceProvider services)
         {

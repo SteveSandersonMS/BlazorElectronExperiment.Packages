@@ -8,11 +8,6 @@ import { decode } from 'base64-arraybuffer';
 import * as electron from 'electron';
 
 function boot() {
-  // In the background, start loading the boot config and any embedded resources
-  const embeddedResourcesPromise = fetchBootConfigAsync().then(bootConfig => {
-    return loadEmbeddedResourcesAsync(bootConfig);
-  });
-
   // Configure the mechanism for JS->.NET calls
   DotNet.attachDispatcher({
     beginInvokeDotNetFromJS: (callId, assemblyName, methodIdentifier, dotNetObjectId, argsJson) => {
@@ -22,9 +17,6 @@ function boot() {
 
   // Wait until the .NET process says it is ready
   electron.ipcRenderer.once('blazor:init', async () => {
-    // Ensure any embedded resources have been loaded before starting the app
-    await embeddedResourcesPromise;
-
     // Confirm that the JS side is ready for the app to start
     electron.ipcRenderer.send('blazor:init', [
       uriHelperFunctions.getLocationHref().replace(/\/index\.html$/, ''),
@@ -36,8 +28,7 @@ function boot() {
   });
 
   electron.ipcRenderer.on('JS.RenderBatch', (_, rendererId, batchBase64) => {
-    const headerLength = 5; // see also: MessagePackBinaryBlockStream.HeaderLength
-    var batchData = new Uint8Array(decode(batchBase64), headerLength);
+    var batchData = new Uint8Array(decode(batchBase64));
     renderBatch(rendererId, new OutOfProcessRenderBatch(batchData));
   });
 
@@ -47,12 +38,3 @@ function boot() {
 }
 
 boot();
-
-async function fetchBootConfigAsync() {
-  const sourceName = '/_content/BlazorElectron/blazor.electron.js';
-  const bootJsonUrl = document.querySelector(`script[src$="${sourceName}"]`)!
-    .getAttribute('src')!
-    .replace(sourceName, '/_framework/blazor.boot.json');
-  const bootConfigResponse = await fetch(bootJsonUrl, { method: 'Get', credentials: 'include' });
-  return bootConfigResponse.json() as Promise<any>;
-}

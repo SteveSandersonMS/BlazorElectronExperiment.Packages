@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Blazor.Services;
+﻿using Microsoft.AspNetCore.Components.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.JSInterop;
 using System;
@@ -32,7 +32,7 @@ namespace Microsoft.AspNetCore.Blazor.Electron
                 var renderer = new ElectronRenderer(services, window);
                 foreach (var rootComponent in builder.Entries)
                 {
-                    renderer.AddComponent(rootComponent.componentType, rootComponent.domElementSelector);
+                    _ = renderer.AddComponentAsync(rootComponent.componentType, rootComponent.domElementSelector);
                 }
             });
         }

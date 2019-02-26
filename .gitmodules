@@ -1,3 +1,0 @@
-[submodule "modules/blazor"]
-	path = modules/blazor
-	url = https://github.com/aspnet/Blazor.git
